@@ -119,6 +119,11 @@ Results support the use of data-driven, meta-learning-based selection of DR tech
    source .venv/bin/activate   # Linux/macOS
    # or:  .venv\Scripts\activate   # Windows
    ```
+   On **Debian/Ubuntu**, if you get *ensurepip is not available*, install the venv package first:
+   ```bash
+   sudo apt install python3.12-venv   # or python3-venv
+   ```
+   then run `python -m venv .venv` again.
 3. **Install dependencies:**
    ```bash
    pip install -r requirements.txt
