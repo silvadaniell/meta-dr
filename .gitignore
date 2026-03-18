@@ -68,5 +68,9 @@ Thumbs.db
 *.json
 *.csv
 
+# Allow figures in images/ (README and paper)
+!images/
+!images/*.pdf
+
 # Logs
 *.log
