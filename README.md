@@ -32,7 +32,7 @@ The framework has two phases:
 
 The figure below summarizes the workflow.
 
-![Meta-DR operational workflow](images/proposedFramework.pdf)
+![Meta-DR operational workflow](images/proposedFramework.png)
 
 *Figure 1: Operational workflow of Meta-DR (construction and recommendation phases).*
 
@@ -44,19 +44,19 @@ Experiments used **68 high-dimensional datasets** (OpenML), **10 DR techniques**
 
 ### Dataset and meta-feature analysis
 
-![Dataset summary](images/dataset_summary.pdf)
+![Dataset summary](images/dataset_summary.png)
 
 *Figure 2: Summary statistics of the 68 datasets (instances, features, classes).*
 
-![Meta-feature correlation](images/correlation_heatmap.pdf)
+![Meta-feature correlation](images/correlation_heatmap.png)
 
 *Figure 3: Correlation among meta-features (original set).*
 
-![Meta-feature correlation reduced](images/correlation_heatmap_reduced.pdf)
+![Meta-feature correlation reduced](images/correlation_heatmap_reduced.png)
 
 *Figure 4: Correlation after removing highly correlated meta-features.*
 
-![Feature importance](images/feature_importance.pdf)
+![Feature importance](images/feature_importance.png)
 
 *Figure 5: Meta-feature importance from the Random Forest meta-learner.*
 
@@ -64,11 +64,11 @@ Experiments used **68 high-dimensional datasets** (OpenML), **10 DR techniques**
 
 The meta-model was evaluated with **Spearman rank correlation (SRC)** between predicted and observed DR rankings. Meta-DR outperformed non-learning baselines (mean and median ranking predictors).
 
-![Mean SRC](images/src_distributionbarIC.pdf)
+![Mean SRC](images/src_distributionbarIC.png)
 
 *Figure 6: Mean Spearman rank correlation for Meta-DR variants and baselines.*
 
-![SRC distribution](images/src_distributionboxplot.pdf)
+![SRC distribution](images/src_distributionboxplot.png)
 
 *Figure 7: Distribution of SRC across datasets.*
 
@@ -76,17 +76,17 @@ The meta-model was evaluated with **Spearman rank correlation (SRC)** between pr
 
 Using the **top-ranked** DR technique recommended by Meta-DR per dataset led to higher average classification performance than fixed DR choices and baselines. Recommending a **small subset** (e.g. best of 2 or 3) further improved robustness.
 
-![Average performance](images/Average-PerformanceBarIC_3_short.pdf)
+![Average performance](images/Average-PerformanceBarIC_3_short.png)
 
 *Figure 8: Average F1-score of Meta-DR variants, individual DR techniques, and baselines.*
 
-![Performance box plots](images/Average-Performancebox.pdf)
+![Performance box plots](images/Average-Performancebox.png)
 
 *Figure 9: Distribution of classification performance (box plots).*
 
 ### Critical difference diagram
 
-![CD diagram](images/cd_diagram.pdf)
+![CD diagram](images/cd_diagram.png)
 
 *Figure 10: Critical difference diagram. Methods connected by a horizontal line are not statistically different (Nemenyi test). Meta-DR variants appear among the top-ranked approaches.*
 

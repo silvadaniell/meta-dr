@@ -71,6 +71,7 @@ Thumbs.db
 # Allow figures in images/ (README and paper)
 !images/
 !images/*.pdf
+!images/*.png
 
 # Logs
 *.log
