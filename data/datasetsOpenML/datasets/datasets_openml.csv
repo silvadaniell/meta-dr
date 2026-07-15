@@ -50,9 +50,7 @@ AP_Breast_Ovary,1165
 OVA_Ovary,1166
 eating,1233
 amazon-commerce-reviews,1457
-arcene,1458
 micro-mass,1514
-micro-mass,1515
 Bioresponse,4134
 CIFAR_10_small,40926
 UMIST_Faces_Cropped,41084
@@ -65,8 +63,3 @@ robert,41165
 SVHN_small,42140
 kits-subset,42766
 kits,42809
-armstrong-2002-v1,46775
-bittner-2000,46776
-khan-2001,46781
-toxicity,46855
-Bioresponse,46912
