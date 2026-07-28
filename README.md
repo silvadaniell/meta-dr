@@ -27,7 +27,7 @@ The main idea is that datasets with similar meta-feature profiles tend to benefi
 
 The framework has two phases:
 
-1. **Construction (offline):** For a set of datasets, extract meta-features, apply each DR technique, evaluate classification performance (e.g. F1 with KNN), and build a meta-dataset of (meta-features, DR performance rankings). A meta-learner (e.g. Random Forest) is trained to predict rankings from meta-features.
+1. **Construction (offline):** For a set of datasets, extract meta-features, apply each DR technique, evaluate classification performance (F1 with KNN), and build a meta-dataset of (meta-features, DR performance rankings). A meta-learner (Random Forest) is trained to predict rankings from meta-features.
 2. **Recommendation (online):** For a new dataset, extract the same meta-features and use the trained meta-model to predict a ranking of DR techniques—without running all DR algorithms.
 
 The figure below summarizes the workflow.
@@ -36,25 +36,27 @@ The figure below summarizes the workflow.
 
 *Figure 1: Operational workflow of Meta-DR (construction and recommendation phases).*
 
+The formal notation behind each step—dataset characterization φ, performance evaluation *p*, meta-dataset assembly Θ, meta-learner training λ, and recommendation for a query dataset—is detailed below.
+
+![Meta-DR formal architecture](images/Architecture.png)
+
+*Figure 2: Formal architecture of the Meta-DR pipeline, from meta-feature extraction to DR ranking recommendation.*
+
 ---
 
 ## Results
 
-Experiments used **68 high-dimensional datasets** (OpenML), **10 DR techniques** (PCA, Kernel PCA, LDA, t-SNE, LLE, Truncated SVD, Incremental PCA, Random Trees Embedding, SelectKBest, Spectral Embedding), and meta-features from **General**, **Statistical**, and **Information-theoretic** categories.
+Experiments used **64 high-dimensional datasets** (OpenML), **8 DR techniques** (PCA, Kernel PCA, t-SNE, LLE, Truncated SVD, Incremental PCA, Random Trees Embedding, Spectral Embedding), and meta-features from **General**, **Statistical**, and **Information-theoretic** categories.
 
 ### Dataset and meta-feature analysis
 
 ![Dataset summary](images/dataset_summary.png)
 
-*Figure 2: Summary statistics of the 68 datasets (instances, features, classes).*
+*Figure 3: Summary statistics of the 64 datasets (instances, features, classes).*
 
-![Meta-feature correlation](images/correlation_heatmap.png)
+![Meta-feature correlation selected](images/meta_features_correlation_matrix.png)
 
-*Figure 3: Correlation among meta-features (original set).*
-
-![Meta-feature correlation reduced](images/correlation_heatmap_reduced.png)
-
-*Figure 4: Correlation after removing highly correlated meta-features.*
+*Figure 4: Correlation among the meta-features selected for the meta-model, after removing highly correlated ones.*
 
 ![Feature importance](images/feature_importance.png)
 
@@ -62,19 +64,19 @@ Experiments used **68 high-dimensional datasets** (OpenML), **10 DR techniques**
 
 ### Ranking prediction (Spearman correlation)
 
-The meta-model was evaluated with **Spearman rank correlation (SRC)** between predicted and observed DR rankings. Meta-DR outperformed non-learning baselines (mean and median ranking predictors).
+The meta-model was evaluated with **Spearman rank correlation (SRC)** between predicted and observed DR rankings. Meta-DR—especially with feature selection—outperformed non-learning baselines (mean and median ranking predictors).
 
-![Mean SRC](images/src_distributionbarIC.png)
+![Mean SRC](images/src_distributionbarIC_with_all_metafeatures.png)
 
-*Figure 6: Mean Spearman rank correlation for Meta-DR variants and baselines.*
+*Figure 6: Mean Spearman rank correlation for Meta-DR (all meta-features and selected meta-features) versus baselines.*
 
 ![SRC distribution](images/src_distributionboxplot.png)
 
-*Figure 7: Distribution of SRC across datasets.*
+*Figure 7: Distribution of SRC across datasets for Meta-DR variants and baselines.*
 
 ### Classification performance
 
-Using the **top-ranked** DR technique recommended by Meta-DR per dataset led to higher average classification performance than fixed DR choices and baselines. Recommending a **small subset** (e.g. best of 2 or 3) further improved robustness.
+Using the **top-ranked** DR technique recommended by Meta-DR per dataset led to higher average classification performance than fixed DR choices and baselines. Recommending a **small subset** (best of 2 or 3) further improved robustness.
 
 ![Average performance](images/Average-PerformanceBarIC_3_short.png)
 
@@ -82,13 +84,13 @@ Using the **top-ranked** DR technique recommended by Meta-DR per dataset led to 
 
 ![Performance box plots](images/Average-Performancebox.png)
 
-*Figure 9: Distribution of classification performance (box plots).*
+*Figure 9: Distribution of classification performance (box plots) across all methods.*
 
 ### Critical difference diagram
 
 ![CD diagram](images/cd_diagram.png)
 
-*Figure 10: Critical difference diagram. Methods connected by a horizontal line are not statistically different (Nemenyi test). Meta-DR variants appear among the top-ranked approaches.*
+*Figure 10: Critical difference diagram. Methods connected by a horizontal line are not statistically different (Nemenyi test). Meta-DR appears among the top-ranked approaches.*
 
 ---
 
@@ -107,8 +109,13 @@ Results support the use of data-driven, meta-learning-based selection of DR tech
 ## Repository structure and usage
 
 - **`Meta_DR.ipynb`**: Main notebook with the full pipeline (meta-feature extraction, DR evaluation, meta-dataset construction, meta-learner training, and evaluation).
-- **`data/`**: Processed data (baseline classification, DR results, meta-features, predictions).
-- **`images/`**: Figures used in the paper and in this README.
+- **`data/`**: Processed data.
+  - `datasetsOpenML/`: metadata for the OpenML datasets used in the experiments.
+  - `metafeatures/`: extracted General, Statistical, and Information-theoretic meta-features per dataset.
+  - `dimensionality_reduction/`: per-technique classification results after applying each DR method.
+  - `predictions/`: meta-model predictions (DR rankings) per dataset.
+  - `ClassificationNoreduction.csv`, `meta_dataset.csv`, `ranking_algorithms.csv`: baseline classification results, assembled meta-dataset, and ground-truth DR rankings.
+- **`images/`**: Figures used in the paper and in this README (PNG, rendered from the original PDFs).
 
 ### Running on your PC
 
