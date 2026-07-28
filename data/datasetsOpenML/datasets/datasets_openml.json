@@ -51,8 +51,6 @@
       "OVA_Ovary",
       "eating",
       "amazon-commerce-reviews",
-      "arcene",
-      "micro-mass",
       "micro-mass",
       "Bioresponse",
       "CIFAR_10_small",
@@ -65,12 +63,7 @@
       "robert",
       "SVHN_small",
       "kits-subset",
-      "kits",
-      "armstrong-2002-v1",
-      "bittner-2000",
-      "khan-2001",
-      "toxicity",
-      "Bioresponse"
+      "kits"
    ],
    "Id": [
       1039,
@@ -124,9 +117,7 @@
       1166,
       1233,
       1457,
-      1458,
       1514,
-      1515,
       4134,
       40926,
       41084,
@@ -138,11 +129,6 @@
       41165,
       42140,
       42766,
-      42809,
-      46775,
-      46776,
-      46781,
-      46855,
-      46912
+      42809
    ]
 }
